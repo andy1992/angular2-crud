@@ -1,2 +1,2 @@
-# angular2-crud
-Simple CRUD applications built in angular2
+# angular5-crud
+Simple CRUD applications built in angular5
