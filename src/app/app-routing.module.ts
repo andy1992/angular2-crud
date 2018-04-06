@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import ProductListComponent from './components/product/list/list.component';
+import AddProductComponent from './components/product/add/add.component';
 
 const routes: Routes = [
     {
@@ -14,6 +15,10 @@ const routes: Routes = [
     {
         path: 'home',
         component: ProductListComponent
+    },
+    {
+        path: 'add',
+        component: AddProductComponent
     }
 ]
 

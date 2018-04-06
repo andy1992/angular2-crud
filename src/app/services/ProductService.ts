@@ -9,6 +9,17 @@ export default class ProductService {
 
     constructor (private _http: Http) { }
 
+    count (productName) {
+        let url = environment.apiBaseUrl + '/product/count';
+        if(productName !== "") {
+            url = url + '?q=' + productName;
+        }
+        return this._http.get(url)
+            .map(response => {
+                return response.json();
+            });
+    }
+
     list (productName) {
         let url = environment.apiBaseUrl + '/products';
 
@@ -21,11 +32,11 @@ export default class ProductService {
             });
     }
 
-    paginate (productName, page = 1, itemPerPage = 10) {
-        let url = environment.apiBaseUrl + '/products/paginate/' + page + '/' + itemPerPage;
+    paginate (productName, page = 1, itemPerPage = 10, orderBy = 'product_id', orderType = 'desc') {
+        let url = environment.apiBaseUrl + '/products/paginate/' + page + '/' + itemPerPage + '?order_by=' + orderBy + '&order_type=' + orderType;
 
         if(productName !== "") {
-            url = url + '?q=' + environment.apiBaseUrl;
+            url = url + '&q=' + productName;
         }
 
         return this._http.get(url)

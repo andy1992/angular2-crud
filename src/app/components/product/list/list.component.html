@@ -1,24 +1,77 @@
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <td>Product Name</td>
-      <td>Description</td>
-      <td>Price</td>
-      <td>Stock</td>
-      <td width=275 align="center">Action</td>
-    </tr>
-  </thead>
-  <tbody>
-     <tr *ngFor="let product of products">
-        <td>{{product.product_name}}</td>
-        <td>{{product.description}}</td>
-        <td>{{product.price}}</td>
-        <td>{{product.quantity}}</td>
-        <td width=275> 
-            <a class="btn btn-info" routerLink="/show/{{product.product_id}}">Detail</a> 
-            <a class="btn btn-success" routerLink="/edit/{{product.product_id}}">Edit</a>
-            <a class="btn btn-danger" (click)="delete(product.product_id)">Delete</a>
-        </td>
-     </tr>
-  </tbody>
-</table>
+<div class="row" style="margin-bottom: 20px;">
+  <div class="col-md-3 text-right">
+    <input type="text" class="form-control" [(ngModel)]="searchQuery" placeholder="Search by product name" />
+  </div>
+  <div class="col-md-3">
+    <button type="button" class="btn btn-default" (click)="search()">Search</button>
+  </div>
+  <div class="col-md-6">
+    <a routerLink="/add" class="btn btn-primary">Add Product</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <td><a routerLink="/home" [queryParams]="{page: currentPage, order_by:'product_name', order_type:orderType}">Product Name</a></td>
+          <td><a routerLink="/home" [queryParams]="{page: currentPage, order_by:'description', order_type:orderType}">Description</a></td>
+          <td><a routerLink="/home" [queryParams]="{page: currentPage, order_by:'price', order_type:orderType}">Price</a></td>
+          <td><a routerLink="/home" [queryParams]="{page: currentPage, order_by:'quantity', order_type:orderType}">Stock</a></td>
+          <td width=275 align="center">Action</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+            <td>{{product.product_name}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.quantity}}</td>
+            <td width=275> 
+                <a class="btn btn-info" routerLink="/show/{{product.product_id}}">Detail</a> 
+                <a class="btn btn-success" routerLink="/edit/{{product.product_id}}">Edit</a>
+                <a class="btn btn-danger" (click)="delete(product.product_id)">Delete</a>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 text-left">
+      Showing {{from}} - {{to}} of {{totalProducts}}
+  </div>
+  <div class="col-md-6 text-right">
+    <ul class="pagination">
+      <ng-container *ngIf="currentPage > 1">
+        <li>
+          <a routerLink="/home" [queryParams]="{page: prevPage, order_by: orderBy, order_type: orderType}">Prev</a>
+        </li>
+        </ng-container>
+        <ng-container *ngIf="currentPage <= 1">
+        <li>
+          <a class="disabled">Prev</a>
+        </li>
+      </ng-container>
+
+      <ng-container *ngFor="let page of pages">
+        <li>
+          <a routerLink="/home" [queryParams]="{page: page, order_by: orderBy, order_type: orderType}">{{page}}</a>
+        </li>
+      </ng-container>
+
+      <ng-container *ngIf="currentPage >= totalPages">
+        <li>
+          <a>Next</a>
+        </li>
+        </ng-container>
+        <ng-container *ngIf="currentPage < totalPages">
+        <li>
+          <a routerLink="/home" [queryParams]="{page: nextPage, order_by: orderBy, order_type: orderType}" class="disabled">Next</a>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('angular2-crud App', () => {
+describe('angular5-crud App', () => {
   let page: AppPage;
 
   beforeEach(() => {
