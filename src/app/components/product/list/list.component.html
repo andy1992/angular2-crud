@@ -5,7 +5,7 @@
   <div class="col-md-3">
     <button type="button" class="btn btn-default" (click)="search()">Search</button>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-6 text-right">
     <a routerLink="/add" class="btn btn-primary">Add Product</a>
   </div>
 </div>
@@ -47,7 +47,7 @@
     <ul class="pagination">
       <ng-container *ngIf="currentPage > 1">
         <li>
-          <a routerLink="/home" [queryParams]="{page: prevPage, order_by: orderBy, order_type: orderType}">Prev</a>
+          <a routerLink="/home" [queryParams]="{page: prevPage, order_by: orderBy, order_type: tempOrderType}">Prev</a>
         </li>
         </ng-container>
         <ng-container *ngIf="currentPage <= 1">
@@ -58,7 +58,7 @@
 
       <ng-container *ngFor="let page of pages">
         <li>
-          <a routerLink="/home" [queryParams]="{page: page, order_by: orderBy, order_type: orderType}">{{page}}</a>
+          <a routerLink="/home" [queryParams]="{page: page, order_by: orderBy, order_type: tempOrderType}">{{page}}</a>
         </li>
       </ng-container>
 
@@ -69,7 +69,7 @@
         </ng-container>
         <ng-container *ngIf="currentPage < totalPages">
         <li>
-          <a routerLink="/home" [queryParams]="{page: nextPage, order_by: orderBy, order_type: orderType}" class="disabled">Next</a>
+          <a routerLink="/home" [queryParams]="{page: nextPage, order_by: orderBy, order_type: tempOrderType}" class="disabled">Next</a>
         </li>
       </ng-container>
     </ul>

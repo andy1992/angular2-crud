@@ -88,13 +88,16 @@ export default class ProductListComponent implements OnInit {
     }
 
     delete(id) {
-        this._productService.delete(id)
-            .subscribe((result) => {
-                if(result)
-                    this.get();
-                else
-                    console.error('Whoops. Something went wrong.');
-            });
+        const confirmation = confirm('Are you sure you want to delete this product?');
+        if(confirmation) {
+            this._productService.delete(id)
+                .subscribe((result) => {
+                    if(result)
+                        this.get();
+                    else
+                        console.error('Whoops. Something went wrong.');
+                });
+        }
     }
 
     search() {

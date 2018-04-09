@@ -46,30 +46,34 @@ export default class ProductService {
     }
 
     show (id) {
-        return this._http.get(environment.apiBaseUrl + '/' + id)
+        return this._http.get(environment.apiBaseUrl + '/products/' + id)
             .map(response => {
-                return response.json();
+                const returnedObject = response.json().data;
+                return returnedObject;
             });
     }
 
     add(product) {
         return this._http.post(environment.apiBaseUrl + '/products', product)
             .map((newProduct) => {
-                return newProduct.json().productId;
+                const returnedObject = newProduct.json().data;
+                return returnedObject.product_id;
             });
     }
 
     edit(product) {
-        return this._http.put(environment.apiBaseUrl + '/products/' + product.productId, product)
+        return this._http.put(environment.apiBaseUrl + '/products/' + product.product_id, product)
             .map((newProduct) => {
-                return newProduct.json().productId;
+                const returnedObject = newProduct.json().data;
+                return returnedObject.product_id;
             });
     }
 
     delete(id) {
         return this._http.delete(environment.apiBaseUrl + '/products/' + id)
             .map((result) => {
-                return result;
+                const returnedObject = result.json().data;
+                return returnedObject;
             });
     }
 }

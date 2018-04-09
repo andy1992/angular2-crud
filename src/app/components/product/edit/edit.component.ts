@@ -1,15 +1,16 @@
-import { Component, OnInit, NgZone, Renderer2 } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import ProductService from '../../../services/ProductService';
 import Product from '../../../models/Product';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
-    selector: 'app-add-product',
-    templateUrl: './add.component.html',
-    styleUrls: ['./add.component.css']
+    selector: 'app-edit-product',
+    templateUrl: './edit.component.html',
+    styleUrls: ['./edit.component.css']
 })
-export default class AddProductComponent implements OnInit {
+export default class EditProductComponent implements OnInit {
     
+    private productObject: Product;
     private productName: string;
     private description: string;
     private price: number;
@@ -24,8 +25,7 @@ export default class AddProductComponent implements OnInit {
         private _productService: ProductService,
         private router: Router,
         private route: ActivatedRoute,
-        private zone: NgZone,
-        private renderer: Renderer2
+        private zone: NgZone
     ) {
         this.productNameError = '';
         this.descriptionError = '';
@@ -34,19 +34,34 @@ export default class AddProductComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('Add product initialized');
+        this.getProduct();
     }
 
-    addProduct() {
+    getProduct() {
+        const id = this.route.snapshot.params['id'];
+        this._productService.show(id)
+            .subscribe(response => {
+                console.log(response);
+                if(response != null) {
+                    this.productObject = response;
+                    this.productName = this.productObject.product_name;
+                    this.description = this.productObject.description;
+                    this.price = this.productObject.price;
+                    this.quantity = this.productObject.quantity;
+                }
+            });
+    }
+
+    editProduct() {
         if(this.validate()) {
-            console.log('Add product clicked');
             const product = new Product();
+            product.product_id = this.route.snapshot.params['id'];
             product.product_name = this.productName;
             product.description = this.description;
             product.price = this.price;
             product.quantity = this.quantity;
 
-            this._productService.add(product)
+            this._productService.edit(product)
                 .subscribe(response => {
                     if(!response) {
                         // do something with error message

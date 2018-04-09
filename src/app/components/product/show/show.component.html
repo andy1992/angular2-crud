@@ -1,12 +1,12 @@
 
-<div class="panel panel-default" *ngIf=employee>
-  <div class="panel-heading">Product detail Form : You can see the detail information of an employee in this page of the EMS Apps.</div>
+<div class="panel panel-default" *ngIf=product>
+  <div class="panel-heading">Product Detail - {{product.product_name}}</div>
   <div class="panel-body">
       <form class="form-horizontal" >
         <div class="form-group">
           <label for="emp_name" class="col-sm-2 control-label">Product Name</label>
           <div class="col-sm-9">
-            <p class="form-control">{{product.productName}}</p> 
+            <p class="form-control">{{product.product_name}}</p> 
           </div>
         </div>
         <div class="form-group">
@@ -28,14 +28,8 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="id" class="col-sm-2 control-label">Product ID : </label>
-          <div class="col-sm-9">
-            <p class="form-control">{{product.productId}}</p>
-          </div>
-        </div>
-        <div class="form-group">
           <div class="col-sm-offset-2 col-sm-8">
-             <a  class="btn btn-info" (click)="goBack()">Cancel</a>
+             <a  class="btn btn-info" (click)="back()">Back</a>
           </div>
         </div>
     </form>

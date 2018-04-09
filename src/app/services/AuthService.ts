@@ -10,7 +10,7 @@ export default class AuthService {
     isAuthenticated() {
         return this._http.get(environment.apiBaseUrl + '/products/1/1')
             .map(response => {
-                const json = response.json()
+                const json = response.json();
                 if(json.length > 0) {
                     return true;
                 }
