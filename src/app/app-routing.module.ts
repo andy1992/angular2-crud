@@ -3,10 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { Routes, RouterModule } from '@angular/router';
 
+// Product CRUD Components
 import ProductListComponent from './components/product/list/list.component';
 import AddProductComponent from './components/product/add/add.component';
 import EditProductComponent from './components/product/edit/edit.component';
 import ShowProductComponent from './components/product/show/show.component';
+
+// Auth Component
+import LoginComponent from './components/auth/login.component';
 
 const routes: Routes = [
     {
@@ -29,6 +33,10 @@ const routes: Routes = [
     {
         path: 'show/:id',
         component: ShowProductComponent
+    },
+    {
+        path: 'login',
+        component: LoginComponent
     }
 ]
 

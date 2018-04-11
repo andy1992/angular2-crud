@@ -1,5 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import ProductService from '../../../services/ProductService';
+import AuthService from '../../../services/AuthService';
 import Product from '../../../models/Product';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -24,12 +25,13 @@ export default class ProductListComponent implements OnInit {
     tempOrderType: string;
     orderBy: string;
     searchQuery: string;
+    private isLoggedIn: boolean;
 
     constructor(
         private _productService: ProductService,
+        private _authService: AuthService,
         private router: Router,
-        private route: ActivatedRoute,
-        private zone: NgZone
+        private route: ActivatedRoute
     ) {
         this.route.queryParams.subscribe((params: Params) => {
             const orderBy = params['order_by'];
@@ -58,6 +60,8 @@ export default class ProductListComponent implements OnInit {
             }
             this.get();
         });
+
+        this._authService.validate();
     }
 
     ngOnInit() {
@@ -88,6 +92,7 @@ export default class ProductListComponent implements OnInit {
     }
 
     delete(id) {
+        this._authService.validate();
         const confirmation = confirm('Are you sure you want to delete this product?');
         if(confirmation) {
             this._productService.delete(id)
@@ -95,7 +100,7 @@ export default class ProductListComponent implements OnInit {
                     if(result)
                         this.get();
                     else
-                        console.error('Whoops. Something went wrong.');
+                        console.error(result);
                 });
         }
     }

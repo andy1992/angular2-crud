@@ -1,5 +1,6 @@
-import { Component, OnInit, NgZone, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import ProductService from '../../../services/ProductService';
+import AuthService from '../../../services/AuthService';
 import Product from '../../../models/Product';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -24,20 +25,21 @@ export default class AddProductComponent implements OnInit {
         private _productService: ProductService,
         private router: Router,
         private route: ActivatedRoute,
-        private zone: NgZone,
-        private renderer: Renderer2
+        private _authService: AuthService
     ) {
         this.productNameError = '';
         this.descriptionError = '';
         this.priceError = '';
         this.quantityError = '';
+
+        this._authService.validate();
     }
 
     ngOnInit() {
-        console.log('Add product initialized');
     }
 
     addProduct() {
+        this._authService.validate();
         if(this.validate()) {
             console.log('Add product clicked');
             const product = new Product();

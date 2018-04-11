@@ -11,6 +11,7 @@ import ProductListComponent from './components/product/list/list.component';
 import AddProductComponent from './components/product/add/add.component';
 import EditProductComponent from './components/product/edit/edit.component';
 import ShowProductComponent from './components/product/show/show.component';
+import LoginComponent from './components/auth/login.component';
 import ProductService from './services/ProductService';
 import AuthService from './services/AuthService';
 
@@ -21,7 +22,8 @@ import AuthService from './services/AuthService';
     ProductListComponent,
     AddProductComponent,
     EditProductComponent,
-    ShowProductComponent
+    ShowProductComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

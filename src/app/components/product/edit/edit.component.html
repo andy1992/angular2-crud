@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default" *ngIf=productObject>
   <div class="panel-heading">Edit Product - {{productObject.product_name}}</div>
   <div class="panel-body">
     <form class="form-horizontal" method="PUT" (submit)="editProduct()">

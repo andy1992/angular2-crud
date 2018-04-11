@@ -1,5 +1,6 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import ProductService from '../../../services/ProductService';
+import AuthService from '../../../services/AuthService';
 import Product from '../../../models/Product';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -16,8 +17,9 @@ export default class ShowProductComponent implements OnInit {
         private _productService: ProductService,
         private router: Router,
         private route: ActivatedRoute,
-        private zone: NgZone
+        private _authService: AuthService
     ) {
+        this._authService.validate();
     }
 
     ngOnInit() {
@@ -28,7 +30,6 @@ export default class ShowProductComponent implements OnInit {
         const id = this.route.snapshot.params['id'];
         this._productService.show(id)
             .subscribe(response => {
-                console.log(response);
                 if(response != null) {
                     this.product = response;
                 }
