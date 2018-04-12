@@ -16,9 +16,11 @@ export default class ProductService {
     ) { }
 
     count (productName) {
-        let url = environment.apiBaseUrl + '/product/count?api_token=' + localStorage.getItem('api_token');
+        let url = environment.apiBaseUrl + '/product/count';
         if(productName !== "") {
-            url = url + '?q=' + productName;
+            url = url + '?q=' + productName + '&api_token=' + localStorage.getItem('api_token');
+        } else {
+            url = url + '?api_token=' + localStorage.getItem('api_token');
         }
         return this._http.get(url)
             .map(response => {
@@ -78,7 +80,6 @@ export default class ProductService {
     delete(id) {
         return this._http.delete(environment.apiBaseUrl + '/products/' + id + '?api_token=' + localStorage.getItem('api_token'))
             .map((result) => {
-                const message = result.json().message;
                 const returnedObject = result.json().data;
                 return returnedObject;
             });

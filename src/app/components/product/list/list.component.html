@@ -23,6 +23,7 @@
         </tr>
       </thead>
       <tbody>
+        <ng-container *ngIf="totalProducts > 0">
         <tr *ngFor="let product of products">
             <td>{{product.product_name}}</td>
             <td>{{product.description}}</td>
@@ -34,12 +35,20 @@
                 <a class="btn btn-danger" (click)="delete(product.product_id)">Delete</a>
             </td>
         </tr>
+        </ng-container>
+        <ng-container *ngIf="totalProducts <= 0">
+          <tr>
+            <td colspan="5" class="text-center">
+              There are no product(s) found.
+            </td>
+          </tr>
+        </ng-container>
       </tbody>
     </table>
   </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="totalProducts > 0">
   <div class="col-md-6 text-left">
       Showing {{from}} - {{to}} of {{totalProducts}}
   </div>

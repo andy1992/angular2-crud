@@ -12,6 +12,9 @@ import ShowProductComponent from './components/product/show/show.component';
 // Auth Component
 import LoginComponent from './components/auth/login.component';
 
+// Registration Component
+import RegisterComponent from './components/user/register.component';
+
 const routes: Routes = [
     {
         path: '',
@@ -37,7 +40,11 @@ const routes: Routes = [
     {
         path: 'login',
         component: LoginComponent
-    }
+    },
+    {
+        path: 'register',
+        component: RegisterComponent
+    },
 ]
 
 @NgModule({

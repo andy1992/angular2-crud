@@ -1,20 +1,23 @@
 import { Component, OnInit, NgZone, Renderer2 } from '@angular/core';
-import AuthService from '../../services/AuthService';
+import UserService from './../../services/UserService';
+import AuthService from './../../services/AuthService';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css']
 })
-export default class LoginComponent implements OnInit {
+export default class RegisterComponent implements OnInit {
     
     private email: string;
     private password: string;
+    private passwordConfirmation: string;
 
     private errorMessage: string;
 
     constructor(
+        private _userService: UserService,
         private _authService: AuthService,
         private router: Router,
         private route: ActivatedRoute
@@ -29,14 +32,16 @@ export default class LoginComponent implements OnInit {
         // TODO: Check if user has been logged in. If yes, redirect the user to home page.
     }
 
-    login() {
+    register() {
         if(this.validate()) {
-            this._authService.login(this.email, this.password)
-                .subscribe(response => {
-                    if(response != undefined && response != '') {
-                        this.errorMessage = response;
-                    }
-                });
+            console.log('register clicked');
+            this._userService.register({
+                username: this.email,
+                email: this.email,
+                password: this.password
+            }).subscribe(response => {
+                
+            });
         }
     }
 
@@ -47,6 +52,12 @@ export default class LoginComponent implements OnInit {
             isValid = false;
         } else if(this.password == '' || this.password == undefined) {
             this.errorMessage = 'The Password field is required';
+            isValid = false;
+        } else if(this.passwordConfirmation == '' || this.passwordConfirmation == undefined) {
+            this.errorMessage = 'The Password Confirmation field is required';
+            isValid = false;
+        } else if(this.passwordConfirmation !== this.password) {
+            this.errorMessage = 'The Password Confirmation field must be equal to Password field';
             isValid = false;
         } else {
             this.errorMessage = '';

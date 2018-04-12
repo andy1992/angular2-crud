@@ -12,8 +12,10 @@ import AddProductComponent from './components/product/add/add.component';
 import EditProductComponent from './components/product/edit/edit.component';
 import ShowProductComponent from './components/product/show/show.component';
 import LoginComponent from './components/auth/login.component';
+import RegisterComponent from './components/user/register.component';
 import ProductService from './services/ProductService';
 import AuthService from './services/AuthService';
+import UserService from './services/UserService';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import AuthService from './services/AuthService';
     AddProductComponent,
     EditProductComponent,
     ShowProductComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import AuthService from './services/AuthService';
   ],
   providers: [
     ProductService,
-    AuthService
+    AuthService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
