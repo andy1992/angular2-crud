@@ -1,5 +1,8 @@
 # angular5-crud
-Simple CRUD applications built with angular5
+Simple CRUD applications built with angular5. Some of the included features are:
+-    Grid with server side sorting, filtering, and pagination
+-    Authentication
+-    User registration
 
 ## 1. Clone the Project
 Download the .zip file or clone the repository.
