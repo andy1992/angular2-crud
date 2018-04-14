@@ -17,12 +17,25 @@ export default class UserService {
         return this._http.post(environment.apiBaseUrl + '/register', obj)
             .map(res => {
                 const response = res.json();
-                if(response.success == true) {
+                if(response.success) {
                     this._authService.login(obj.email, obj.password).subscribe(response => {
                         
                     });
                 }
-                console.log(response.success);
+            });
+    }
+
+    changePassword(obj) {
+        const user = this._authService.getUser();
+        const token = this._authService.getToken();
+        return this._http.post(environment.apiBaseUrl + '/change-password/' + user.id + '?api_token=' + token, obj)
+            .map(res => {
+                const response = res.json();
+                if(response.success) {
+                    return true;
+                } else {
+                    return response.message;
+                }
             });
     }
 

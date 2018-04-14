@@ -13,6 +13,7 @@ export default class LoginComponent implements OnInit {
     private password: string;
 
     private errorMessage: string;
+    private successMessage: string;
 
     constructor(
         private _authService: AuthService,
@@ -22,6 +23,12 @@ export default class LoginComponent implements OnInit {
         this._authService.isAuthenticated().subscribe(result => {
             if(result)
                 this.router.navigate(['home']);
+
+            const successMessage = localStorage.getItem('success_message');
+            if(successMessage != undefined && successMessage != null) {
+                this.successMessage = successMessage;
+                localStorage.removeItem('success_message');
+            }
         });
     }
 

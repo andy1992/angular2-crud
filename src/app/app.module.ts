@@ -12,7 +12,8 @@ import AddProductComponent from './components/product/add/add.component';
 import EditProductComponent from './components/product/edit/edit.component';
 import ShowProductComponent from './components/product/show/show.component';
 import LoginComponent from './components/auth/login.component';
-import RegisterComponent from './components/user/register.component';
+import RegisterComponent from './components/user/register/register.component';
+import ChangePasswordComponent from './components/user/change-password/change-password.component';
 import ProductService from './services/ProductService';
 import AuthService from './services/AuthService';
 import UserService from './services/UserService';
@@ -26,7 +27,8 @@ import UserService from './services/UserService';
     EditProductComponent,
     ShowProductComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -30,7 +30,7 @@ export default class AuthService {
         localStorage.removeItem('user');
         localStorage.removeItem('api_token');
         this.isLoggedIn.next(false);
-        this.router.navigate(['home']);
+        this.router.navigate(['login']);
     }
 
     login(email, password) {

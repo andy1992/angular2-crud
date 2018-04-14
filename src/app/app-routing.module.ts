@@ -12,8 +12,9 @@ import ShowProductComponent from './components/product/show/show.component';
 // Auth Component
 import LoginComponent from './components/auth/login.component';
 
-// Registration Component
-import RegisterComponent from './components/user/register.component';
+// User Component
+import RegisterComponent from './components/user/register/register.component';
+import ChangePasswordComponent from './components/user/change-password/change-password.component';
 
 const routes: Routes = [
     {
@@ -45,6 +46,10 @@ const routes: Routes = [
         path: 'register',
         component: RegisterComponent
     },
+    {
+        path: 'change-password',
+        component: ChangePasswordComponent
+    }
 ]
 
 @NgModule({

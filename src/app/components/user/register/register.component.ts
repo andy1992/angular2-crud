@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone, Renderer2 } from '@angular/core';
-import UserService from './../../services/UserService';
-import AuthService from './../../services/AuthService';
+import UserService from './../../../services/UserService';
+import AuthService from './../../../services/AuthService';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({

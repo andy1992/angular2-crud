@@ -10,6 +10,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   private isLoggedIn:boolean;
+  private user;
 
   constructor(
     private _authService: AuthService,
@@ -18,9 +19,12 @@ export class NavbarComponent implements OnInit {
     this._authService.isLoggedIn.subscribe(value => {
       if(value !== null) {
         this.isLoggedIn = value;
+        if(value)
+            this.user = this._authService.getUser();
       } else {
           this._authService.isAuthenticated().subscribe(value => {
               this.isLoggedIn = value;
+              this.user = this._authService.getUser();
           });
       }
     });
