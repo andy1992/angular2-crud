@@ -1,5 +1,5 @@
 # angular5-crud
-Simple CRUD applications built with angular5
+Simple CRUD application built with angular5
 
 ## 1. Clone the Project
 Download the .zip file or clone the repository.
