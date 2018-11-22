@@ -12,16 +12,24 @@ Clone the API for this project from https://github.com/andy1992/lumen-crud. Foll
 
 ## 2. Clone the Project
 Download the .zip file or clone the repository.
+```sh
     git clone https://github.com/andy1992/angular5-crud
+```
     
 ## 3. Install Dependencies
 On your project directory, install the project dependencies.
+```sh
     npm install
-    
+```
+
 ## 4. Install Angular CLI
 If you do not have angular-cli installed in your environment, please install it.
+```sh
     npm install -g @angular/cli@latest
+```
     
 ## 5. Run the Project
 On your project directory, run the project (make sure you have also already run the web API project).
+```sh
     ng serve
+```
